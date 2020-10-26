@@ -110,7 +110,7 @@
 
             // console.log(file)
             // console.log(inputPhoto.files)
-            fetch(`http://localhost:3333/updateUser`, {
+            fetch(`https://clo2020.herokuapp.com/updateUser`, {
                 method: "PUT",
                 headers: { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('token') },
 
@@ -169,7 +169,7 @@
         document.addEventListener("DOMContentLoaded", function () {
 
 
-            fetch(`http://localhost:3333/loadUser`, {
+            fetch(`https://clo2020.herokuapp.com/loadUser`, {
                 method: "GET",
                 headers: { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('token') }
             })

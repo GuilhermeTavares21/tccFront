@@ -75,7 +75,7 @@
 
             var buscarBrecho = localStorage.getItem("buscar")
             console.log(buscarBrecho)
-            fetch(`http://localhost:3333/findOne`, {
+            fetch(`https://clo2020.herokuapp.com/findOne`, {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
