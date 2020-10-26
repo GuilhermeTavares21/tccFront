@@ -1,0 +1,90 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
+
+.cards-b {
+	margin: 50px auto;
+    padding: 0 70px;
+    font-family: 'Quicksand', sans-serif;
+    text-decoration: none !important;
+
+}
+
+.cards-b:hover{
+    text-decoration: none !important;
+}
+
+.cards-b .img-box {
+	height: 160px;
+	width: 100%;
+	position: relative;
+}
+.cards-b img {	
+	max-width: 100%;
+	max-height: 100%;
+	display: inline-block;
+	position: absolute;
+	bottom: 0;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+}
+.cards-b  p {
+	font-size: 18px;
+	margin: 10px 0;
+}
+.cards-b  .btn {
+	color: #333;
+	border-radius: 0;
+	font-size: 11px;
+	text-transform: uppercase;
+	font-weight: bold;
+	background: none;
+	border: 1px solid #ccc;
+	padding: 5px 10px;
+	margin-top: 5px;
+	line-height: 16px;
+}
+.cards-b .btn:hover, .cards-b .btn:focus {
+	color: #fff;
+	background: #000;
+	border-color: #000;
+	box-shadow: none;
+}
+.cards-b .btn i {
+	font-size: 14px;
+	font-weight: bold;
+	margin-left: 5px;
+}
+.cards-b .thumb-wrapper {
+    text-align: center;
+    /* border: 1px solid; */
+    padding: 5px;
+    border-radius: 15px;
+    -webkit-box-shadow: 0px 0px 9px 2px rgba(0,0,0,0.43);
+-moz-box-shadow: 0px 0px 9px 2px rgba(0,0,0,0.43);
+box-shadow: 0px 0px 9px 2px rgba(0,0,0,0.43);
+}
+.cards-b .thumb-content {
+	padding: 15px;
+}
+.cards-b .thumb-content .brechotitle{
+	font-size: 22px;
+}
+.cards-b .thumb-content .brechosubtitle{
+	font-size: 15px;
+	color: #333;
+}
+
+
+
+a{
+    text-decoration: none !important;
+    color: black !important;
+}
+
+a:hover{
+    text-decoration: none !important;
+    color: black !important;
+}
