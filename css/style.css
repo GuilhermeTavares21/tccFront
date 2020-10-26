@@ -390,3 +390,27 @@ body { overflow-x: hidden; }
 	box-shadow: 0 0 5px #777 !important;
 	border: 1px solid black !important;
 }
+
+.vermais{
+	text-decoration: none;
+	transition: 0.4s;
+	color: #333;
+	border-radius: 0;
+	font-size: 14px;
+	text-transform: uppercase;
+	font-weight: bold;
+	background: none;
+	border: 1px solid #ccc;
+	padding: 8px 10px;
+	margin-top: 5px;
+	line-height: 16px;
+}
+
+.vermais:hover, .vermais:focus {
+	text-decoration: none;
+	transition: 0.4s;
+	color: #fff;
+	background: #000;
+	border-color: #000;
+	box-shadow: none;
+}
