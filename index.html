@@ -76,10 +76,10 @@
                     <div class="carousel-inner">
                       <!-- parte 1 -->
                         <div class="carousel-item active">
-                            <div class="row">
+                            <div class="row" id="produtos1">
 
 
-                                <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6 col-12">
+                                <!-- <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6 col-12">
                                     <div class="thumb-wrapper">
                                         <div class="img-box">
                                             <img src="images/camisa1.jpg" class="img-fluid" alt="">
@@ -197,7 +197,7 @@
                                             <a href="#" class="btn btn-primary">Adicionar ao Carrinho</a>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>                      
                     </div>
@@ -232,10 +232,10 @@
                     <!-- parte 1 -->
                     <div class="carousel-inner" >
                         <div class="carousel-item active">
-                            <div class="row" id="produtos1">
+                            <div class="row" >
 
 
-                                <!-- <div class="col-2">
+                                <div class="col-2">
                                     <div class="thumb-wrapper">
                                         <div class="img-box">
                                             <img src="images/camisa1.jpg" class="img-fluid" alt="">
@@ -347,7 +347,7 @@
                                             <a href="#" class="btn btn-primary">Adicionar ao Carrinho</a>
                                         </div>
                                     </div>
-                                </div>-->
+                                </div>
                             </div>
                         </div> 
 
@@ -1716,123 +1716,38 @@
                 .then((resposta) => {
                     resposta.json().then((dados) => {
                         var { products } = dados;
-                    //     console.log(products[4].image.location)
-                        console.log(dados)
+                        console.log(products)
+                        for(produtos of products){
                         
-                    //     // Exibindo produtos
+                        console.log(produtos.price)
+                        }
+
+                    // Exibindo produtos
                         var produtos = ""
                         
                         for (let i = 0; i < products.length; i++) {
+                        var desconto = products[i].price*0.1
+                        var price = products[i].price
+                        price-=desconto
+                        console.log(products[i].price*0.1)
                             produtos +=
-                    //         "<div class='carousel-item active'>"+
-                    //             "<div class='row'>"+
-                                    "<div class='col-2'>" +
+                                    "<div class='col-xl-2 col-lg-4 col-md-4 col-sm-6 col-12'" +
                                         "<div class='thumb-wrapper'>" +
-                                            "<div class='img-box'>" +
-                                                "<img id='imagePeril' src='" + products[i].image.location + "' class='img-fluid'>" +
-                                            "</div>" +
-                                            "<div class='thumb-content'>" +
-                                                "<h4>" + products[i].style + "</h4>" +
-                                                "<p class='item-price'>R$" + products[i].price + "" +
-                                                "</p>" +
-                                                "<p class='item-name mt-1 mb-3'></p>" +
-
-                                                "<a href='#' class='btn btn-primary'>Adicionar ao Carrinho</a>" +
+                                            "<a href='pages/product.html' >" + 
+                                                "<div class='img-box'>" +
+                                                    "<img id='imagePeril' src='" + products[i].image.location + "' class='img-fluid'>" +
+                                                "</div>" +
+                                                "<div class='thumb-content'>" +
+                                                    "<h4>" + products[i].style + "</h4>" +
+                                                    "<p class='item-price'><span class='font-cut'> R$"+products[i].price+"</span> R$" + price + "</p>"+
+                                                    "</p>" +
+                                                    "<p class='item-name mt-1 mb-3'>"+products[i].adm.name+"</p>" +
+                                                    
+                                                    "<a href='#' class='btn btn-primary'>Adicionar ao Carrinho</a>" +
+                                                "</div>" +
+                                            "</a>"+
                                         "</div>" +
                                     "</div>" 
-                    //                 "</div>"+
-                    //                 "<div class='col-2'>" +
-                    //                     "<div class='thumb-wrapper'>" +
-                    //                         "<div class='img-box'>" +
-                    //                             "<img id='imagePeril' src='" + products[i].image.location + "' class='img-fluid'>" +
-                    //                         "</div>" +
-                    //                         "<div class='thumb-content'>" +
-                    //                             "<h4>" + products[i].style + "</h4>" +
-                    //                             "<p class='item-price'>R$" + products[i].price + "" +
-                    //                             "</p>" +
-                    //                             "<p class='item-name mt-1 mb-3'>" + products[i].adm.name + "</p>" +
-
-                    //                             "<a href='#' class='btn btn-primary'>Adicionar ao Carrinho</a>" +
-                    //                         "</div>" +
-                    //                     "</div>" +
-                    //                 "</div>"+
-                    //                 "<div class='col-2'>" +
-                    //                     "<div class='thumb-wrapper'>" +
-                    //                         "<div class='img-box'>" +
-                    //                             "<img id='imagePeril' src='" + products[i].image.location + "' class='img-fluid'>" +
-                    //                         "</div>" +
-                    //                         "<div class='thumb-content'>" +
-                    //                             "<h4>" + products[i].style + "</h4>" +
-                    //                             "<p class='item-price'>R$" + products[i].price + "" +
-                    //                             "</p>" +
-                    //                             "<p class='item-name mt-1 mb-3'>" + products[i].adm.name + "</p>" +
-
-                    //                             "<a href='#' class='btn btn-primary'>Adicionar ao Carrinho</a>" +
-                    //                         "</div>" +
-                    //                     "</div>" +
-                    //                 "</div>"+
-                    //                 "<div class='col-2'>" +
-                    //                     "<div class='thumb-wrapper'>" +
-                    //                         "<div class='img-box'>" +
-                    //                             "<img id='imagePeril' src='" + products[i].image.location + "' class='img-fluid'>" +
-                    //                         "</div>" +
-                    //                         "<div class='thumb-content'>" +
-                    //                             "<h4>" + products[i].style + "</h4>" +
-                    //                             "<p class='item-price'>R$" + products[i].price + "" +
-                    //                             "</p>" +
-                    //                             "<p class='item-name mt-1 mb-3'>" + products[i].adm.name + "</p>" +
-
-                    //                             "<a href='#' class='btn btn-primary'>Adicionar ao Carrinho</a>" +
-                    //                         "</div>" +
-                    //                     "</div>" +
-                    //                 "</div>"+
-                    //                 "<div class='col-2'>" +
-                    //                     "<div class='thumb-wrapper'>" +
-                    //                         "<div class='img-box'>" +
-                    //                             "<img id='imagePeril' src='" + products[i].image.location + "' class='img-fluid'>" +
-                    //                         "</div>" +
-                    //                         "<div class='thumb-content'>" +
-                    //                             "<h4>" + products[i].style + "</h4>" +
-                    //                             "<p class='item-price'>R$" + products[i].price + "" +
-                    //                             "</p>" +
-                    //                             "<p class='item-name mt-1 mb-3'>" + products[i].adm.name + "</p>" +
-
-                    //                             "<a href='#' class='btn btn-primary'>Adicionar ao Carrinho</a>" +
-                    //                         "</div>" +
-                    //                     "</div>" +
-                    //                 "</div>"+
-                    //                 "<div class='col-2'>" +
-                    //                     "<div class='thumb-wrapper'>" +
-                    //                         "<div class='img-box'>" +
-                    //                             "<img id='imagePeril' src='" + products[i].image.location + "' class='img-fluid'>" +
-                    //                         "</div>" +
-                    //                         "<div class='thumb-content'>" +
-                    //                             "<h4>" + products[i].style + "</h4>" +
-                    //                             "<p class='item-price'>R$" + products[i].price + "" +
-                    //                             "</p>" +
-                    //                             "<p class='item-name mt-1 mb-3'>" + products[i].adm.name + "</p>" +
-
-                    //                             "<a href='#' class='btn btn-primary'>Adicionar ao Carrinho</a>" +
-                    //                         "</div>" +
-                    //                     "</div>" +
-                    //                 "</div>"+
-                    //                 "<div class='col-2'>" +
-                    //                     "<div class='thumb-wrapper'>" +
-                    //                         "<div class='img-box'>" +
-                    //                             "<img id='imagePeril' src='" + products[i].image.location + "' class='img-fluid'>" +
-                    //                         "</div>" +
-                    //                         "<div class='thumb-content'>" +
-                    //                             "<h4>" + products[i].style + "</h4>" +
-                    //                             "<p class='item-price'>R$" + products[i].price + "" +
-                    //                             "</p>" +
-                    //                             "<p class='item-name mt-1 mb-3'>" + products[i].adm.name + "</p>" +
-
-                    //                             "<a href='#' class='btn btn-primary'>Adicionar ao Carrinho</a>" +
-                    //                         "</div>" +
-                    //                     "</div>" +
-                    //                 "</div>"+
-                    //             "</div>"+
-                    //         "</div>"
                         }
                         $('#produtos1').html(produtos)
 
