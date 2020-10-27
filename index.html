@@ -1717,7 +1717,7 @@
                     resposta.json().then((dados) => {
                         var { products } = dados;
                     //     console.log(products[4].image.location)
-                        console.log(products.length)
+                        console.log(dados)
                         
                     //     // Exibindo produtos
                         var produtos = ""
@@ -1735,7 +1735,7 @@
                                                 "<h4>" + products[i].style + "</h4>" +
                                                 "<p class='item-price'>R$" + products[i].price + "" +
                                                 "</p>" +
-                                                "<p class='item-name mt-1 mb-3'>" + products[i].adm.name + "</p>" +
+                                                "<p class='item-name mt-1 mb-3'></p>" +
 
                                                 "<a href='#' class='btn btn-primary'>Adicionar ao Carrinho</a>" +
                                         "</div>" +
@@ -1834,7 +1834,6 @@
                     //             "</div>"+
                     //         "</div>"
                         }
-                        console.log(produtos)
                         $('#produtos1').html(produtos)
 
                     })
