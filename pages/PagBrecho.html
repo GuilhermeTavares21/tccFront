@@ -296,9 +296,10 @@
 		var alterarDados = document.getElementById('alterarDados')
 		var addProduto = document.getElementById('addProduto')
 		// console.log(descricao)
+		var id = localStorage.getItem("brechoId")
 		document.addEventListener("DOMContentLoaded", function () {
 
-			fetch(`https://clo2020.herokuapp.com/loadAdm`, {
+			fetch(`https://clo2020.herokuapp.com/viewAdm/${id}`, {
 				method: "get",
 				headers: { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('token') }
 
@@ -378,7 +379,7 @@
 			var ComentarioAvaliacao = document.getElementById('ComentarioAvaliacao')
 			console.log(ValorAvaliacao.value)
 			console.log(ComentarioAvaliacao.value)
-			fetch(`https://clo2020.herokuapp.com/evaluationAdm/5f96ce2f1eea19524c924bbf`, {
+			fetch(`https://clo2020.herokuapp.com/evaluationAdm/${id}`, {
 				method: "POST",
 				headers: { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('token') },
 				body: JSON.stringify({                    
@@ -392,7 +393,7 @@
 						var { evaluation } = dados;
 
 						console.log(dados)
-						
+						window.location.reload()
 						for(avaliations of evaluation){
 
 							console.log(avaliations)

@@ -25,26 +25,16 @@
         </div>
         <div class="row">
             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                <img src="../images/camisa1.jpg" class="img-fluid img-p border-r" alt="">
+                <img id="imagem" src="" class="img-fluid img-p border-r" alt="">
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-6 produto">
-                <p class="title-p">Camiseta Florida</p>
-                <p class="item-price-p ml-2"><span class="font-cut">R$149.99</span> R$99.99
-                <div class="star-rating-p ml-2">
-                    <ul class="list-inline">
-                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                        <li class="list-inline-item"><i class="fa fa-star-half-o"></i></li>
-                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-                        <li class="list-inline-item txt-aval">(777)</li>
-                    </ul>
-                </div>
-                <p class="ml-2 txt-produto"><span class="txt-bold">Cor:</span> Preto e Branco</p>
-                <p class="ml-2 txt-produto"><span class="txt-bold">Tamanho: </span> G</p>
-                <p class="ml-2 txt-produto"><span class="txt-bold">Disponível: </span> 7</p>
-                <p class="ml-2 txt-produto"><span class="txt-bold">Marca: </span> Carlos Co.</p>
-                <p class="ml-2 txt-produto"><span class="txt-bold">Descrição: </span> Camisa preta de manga curta com flores brancas feita em algodão e poliéster. </p>
+                <p class="title-p" id="nome">Camiseta Florida</p>
+                <p class="item-price-p ml-2"><span class="font-cut" id="preco"></span> <span id="desconto"> </span>
+                
+                <p class="ml-2 txt-produto"><span class="txt-bold">Tamanho: </span> <span id="tamanho">G</span></p>
+                <p class="ml-2 txt-produto"><span class="txt-bold">Tempo de uso: </span> <span id="tempoUsado">Carlos Co.</span></p>
+                <p class="ml-2 txt-produto"><span class="txt-bold">Brecho: </span> <span id="brecho">Carlos Co.</span></p>
+                <p class="ml-2 txt-produto"><span class="txt-bold">Descrição: </span> <span id="descricao">Camisa preta de manga curta com flores brancas feita em algodão e poliéster. </span></p>
                 <div class="row">
                     <div class="col-6">
                         <a href="pages/product.html" class="btn-p ml-2">Adicionar ao Carrinho</a>
@@ -53,5 +43,44 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            var id = localStorage.getItem("produtoId")
+            var nome = document.getElementById('nome')
+            var preco = document.getElementById('preco')
+            var desconto = document.getElementById('desconto')
+            var tamanho = document.getElementById('tamanho')
+            var tempoUsado = document.getElementById('tempoUsado')
+            var brecho = document.getElementById('brecho')
+            var descricao = document.getElementById('descricao')
+            var imagem = document.getElementById('imagem')
+            fetch(`https://clo2020.herokuapp.com/oneProduct/${id}`, {
+				method: "get",
+				headers: { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('token') }
+
+			})
+			.then((resposta) => {
+				resposta.json().then((dados) => {
+                    const { style, size, price, timeUsed, description, image, adm } = dados.product
+                    console.log(dados)
+                    var descont = price*0.1
+                    var valor = price
+                    valor-=descont
+
+                    nome.textContent = style
+                    preco.textContent = "R$: "+ price
+                    desconto.textContent = "R$: "+ valor
+                    tempoUsado.textContent = timeUsed
+                    tamanho.textContent = size
+                    brecho.textContent = adm.name
+                    descricao.textContent = description
+                    imagem.src = image.location
+
+                })
+            })
+        })
+    </script>
 </body>
 </html>

@@ -122,14 +122,28 @@
 
                 })
         })
+        var form = document.querySelector('form')
+        form.addEventListener('submit', function (e) {
+            e.preventDefault()
+
+            var buscar = document.getElementById('buscar').value
+
+            var a = buscar;
+            console.log(a)
+            localStorage.setItem("buscar", a)
+            
+
+            console.log(buscar)
+            return window.location.reload()
+        })
 
     </script>
     <script>
 
         function a(id) {
-            // localStorage.setItem("brechoId", id)
-            console.log("s")
-            window.location = "brecho-profile.html"
+            localStorage.setItem("brechoId", id)
+            console.log(id)
+            window.location = "PagBrecho.html"
         }
     </script>
 </body>
