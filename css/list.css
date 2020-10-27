@@ -88,3 +88,13 @@ a:hover{
     text-decoration: none !important;
     color: black !important;
 }
+
+.btnreset button{
+	border: none;
+	background: none;
+}
+
+.btnreset button:focus{
+	border: none;
+	background: none;
+}

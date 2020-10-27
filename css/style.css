@@ -414,3 +414,19 @@ body { overflow-x: hidden; }
 	border-color: #000;
 	box-shadow: none;
 }
+
+.btnreset button{
+	border: none;
+	background: none;
+}
+/* 
+.card-prod{
+	height: 350px;
+	border: 1px solid #000;
+}
+ */
+
+.pontinho{
+	 margin: 0px 0px;
+	 font-size: 1.5em;
+}
