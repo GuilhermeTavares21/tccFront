@@ -38,38 +38,33 @@
                         <p class="subtitle text-center text-monospace font">Adicionar um Produto</p>
                         <form class="form-signin">
                             <div class="form-label-group">
-                                <input type="text" id="inputEmail" class="form-control text-dark"
-                                    placeholder="Nome do Produto" required autofocus>
+                                <input type="text" id="nome" class="form-control text-dark"
+                                    placeholder="Nome do Produto" minlength="18" required autofocus>
                             </div>
                         
                             <div class="form-label-group">
-                                <input type="text" id="inputEmail" class="form-control text-dark"
-                                    placeholder="Preço" required autofocus>
+                                <input type="text" id="tamanho" class="form-control text-dark"
+                                    placeholder="Tamanho" required autofocus>
                             </div>
 
                             <div class="form-label-group">
-                                <input type="text" id="inputEmail" class="form-control text-dark" placeholder="Cor"
+                                <input type="text" id="preco" class="form-control text-dark" placeholder="Preço"
                                     required autofocus>
                             </div>
 
                             <div class="form-label-group">
-                                <input type="text" id="inputEmail" class="form-control text-dark" placeholder="Tamanho"
+                                <input type="text" id="tempoUsado" class="form-control text-dark" placeholder="Tempo Usado"
                                     required autofocus>
                             </div>
 
                             <div class="form-label-group">
-                                <input type="text" id="inputEmail" class="form-control text-dark" placeholder="Nº Disponíveis"
+                                <input type="text" id="descricao" class="form-control text-dark" placeholder="Descrição"
                                     required autofocus>
                             </div>
 
                             <div class="form-label-group">
-                                <input type="text" id="inputEmail" class="form-control text-dark" placeholder="Marca"
-                                    required autofocus>
-                            </div>
-
-                            <div class="form-label-group">
-                                <input type="text" id="inputEmail" class="form-control text-dark" placeholder="Descrição"
-                                    required autofocus>
+                                <input type="text" id="desconto" class="form-control text-dark" placeholder="Valor de desconto (opicional)"
+                                    autofocus>
                             </div>
 
                             
@@ -92,6 +87,81 @@
             </div>
         </div>
     </div>
+
+    <script>
+        var form = document.querySelector('form')
+        var nome = document.getElementById('nome')
+        var tamanho = document.getElementById('tamanho')
+        var preco = document.getElementById('preco')
+        var tempoUsado = document.getElementById('tempoUsado')
+        var descricao = document.getElementById('descricao')
+        var desconto = document.getElementById('desconto')
+        var inputPhoto = document.getElementById('inputPhoto')
+        const form_data = new FormData()
+
+        
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault()
+            form_data.append("file", inputPhoto.files[0])
+            
+            const data = Array.from(form_data)
+            const file = data[0][1]
+            
+            
+            console.log(Array.from(form_data))
+            console.log(data[0][1])
+            for (var key of form_data) {
+                console.log(key);
+            }
+
+            console.log(file)
+            console.log(inputPhoto.files)
+
+            // console.log(password.value)
+            fetch(`https://clo2020.herokuapp.com/products`, {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('token') },
+                body: JSON.stringify({
+                    style: nome.value,
+                    size: tamanho.value,
+                    price: preco.value,
+                    timeUsed: tempoUsado.value,
+                    description: descricao.value,
+                    desconto: desconto.value,
+                    file: form_data
+                })
+            })
+            .then((resposta) => {
+                resposta.json().then((dados) => {
+                   
+                        
+                        console.log(dados)
+                        // window.location = "brecho=profile.html"        
+                })
+            })
+        })
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+
+            fetch(`https://clo2020.herokuapp.com/loadAdm`, {
+                method: "GET",
+                headers: { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('token') }
+            })
+                .then((resposta) => {
+                    resposta.json().then((dados) => {
+                        // console.log(dados)
+                        // if (dados.message) {
+                        //     return window.location = '404.html'
+                        // }
+                        // var { name, phone, email, password, street, numberHouse, complement } = dados;
+                        // nome.textContent = name
+
+                    })
+                })
+        })
+    </script>
 
 </body>
 

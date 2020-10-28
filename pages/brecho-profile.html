@@ -149,7 +149,7 @@
 
 	<div class="container-fluid mt-5" id="addProduto">
 		<div class="row px-5">
-			<a class="btn03 mx-auto" href="../pages/add-product.html"><i class="fas  fa-plus"></i></a>
+			<button class="btn03 mx-auto" id="adicionarProduto"><i class="fas  fa-plus"></i></button>
 		</div>
 	</div>
 
@@ -376,6 +376,7 @@
 	<script>
 		var form = document.querySelector('form')
 		var error = document.getElementById("error")
+		var addproduto = document.getElementById("adicionarProduto")
 
 		var nome = document.getElementById("nome")
 		var telephone = document.getElementById("telephone")
@@ -468,6 +469,9 @@
 			})
 		})
 
+		addproduto.addEventListener('click', function(){
+			window.location = "add-product.html"
+		})
 
 
 		avaliar.addEventListener('click', function() {
