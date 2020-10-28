@@ -33,6 +33,7 @@
                             <img src="../images/logoclo.svg" class=" my-3" height="50" alt="Logo Clo">
                         </div>
                         <p class="subtitle text-center text-monospace font">Registrar como Usuário</p>
+                        <p id="error" class="loginerror"></p>
                         <form class="form-signin">
                             <div class="form-label-group">
                                 <input type="text" id="inputName" class="form-control text-dark" placeholder="Nome Completo"
@@ -67,7 +68,7 @@
 
                             <div class="form-label-group">
                                 <input type="text" id="inputComplement" class="form-control" placeholder="Complemento"
-                                    required>
+                                    >
                             </div>
 
                             <button class="btn btn-lg btn-login btn-block text-uppercase" type="submit">Registrar Usuário</button>
@@ -113,23 +114,10 @@
             })
             .then((resposta) => {
                 resposta.json().then((dados) => {
-                    // var { name, phone, email, password, street, numberHouse } = dados.user;
-                    // if (!name || !phone || !email || !password || !street || !numberHouse) {
-                    //     usuario.innerHTML += "<h1>Dados inválidos</h1>"
-                    // }
-                    // else {
-                        
-                        console.log(dados)
-                        // nome.innerText = "Nome: " + name;
-
-                        // console.log(password)
-                        // telefone.innerText = "Telefone: " + phone
-
-                        // console.log(name)
-                        // emailUser.innerText = "Email: " + email
-
-                        // usuario.innerHTML += "<br>"
-                    // }
+                        if(!dados.user){                      
+                            return error.textContent = dados
+                        }
+                        window.location = " login-user.html "
                 })
             })
         })

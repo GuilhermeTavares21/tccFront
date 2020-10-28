@@ -141,62 +141,62 @@
         <div class="title1">
             <h2>Brechós Parceiros</h2>
         </div>
-        <div class="">
+        <div class="" >
 
             <div class="row" id="brechosParceiros">
-                <div class="col-lg-2 col-md-2 col-4 text-center brechos-destaque">
+                <!-- <div class="col-lg-2 col-md-2 col-4 text-center brechos-destaque">
                     <a href="pages/brecho-profile.html">
                         <img class="rounded-circle image-circle img-fluid" alt="Imagem Brechó Parceiro"
-                            src="images/rounded.png" data-holder-rendered="true">
+                        id="brechoImage1"  src="images/rounded.png" data-holder-rendered="true">
                     </a>
-                    <p class="txt-brecho">Brechó do Carlos</p>
+                    <p class="txt-brecho" id="nomeBrecho1"></p>
 
                 </div>
 
                 <div class="col-lg-2 col-md-2 col-4 text-center brechos-destaque">
                     <a href="pages/brecho-profile.html">
                         <img class="rounded-circle image-circle img-fluid" alt="Imagem Brechó Parceiro"
-                            src="images/rounded.png" data-holder-rendered="true">
+                        id="brechoImage2" src="images/rounded.png" data-holder-rendered="true">
                     </a>
-                    <p class="txt-brecho">Brechó do Carlos</p>
+                    <p class="txt-brecho"id="nomeBrecho2"></p>
 
                 </div>
 
                 <div class="col-lg-2 col-md-2 col-4 text-center brechos-destaque">
                     <a href="pages/brecho-profile.html">
                         <img class="rounded-circle image-circle img-fluid" alt="Imagem Brechó Parceiro"
-                            src="images/rounded.png" data-holder-rendered="true">
+                        id="brechoImage3"  src="images/rounded.png" data-holder-rendered="true">
                     </a>
-                    <p class="txt-brecho">Brechó do Carlos</p>
+                    <p class="txt-brecho"id="nomeBrecho3"></p>
 
                 </div>
 
                 <div class="col-lg-2 col-md-2 col-4 text-center brechos-destaque">
                     <a href="pages/brecho-profile.html">
                         <img class="rounded-circle image-circle img-fluid" alt="Imagem Brechó Parceiro"
-                            src="images/rounded.png" data-holder-rendered="true">
+                           id="brechoImage4" src="images/rounded.png" data-holder-rendered="true">
                     </a>
-                    <p class="txt-brecho">Brechó do Carlos</p>
+                    <p class="txt-brecho"id="nomeBrecho4"></p>
 
                 </div>
 
                 <div class="col-lg-2 col-md-2 col-4 text-center brechos-destaque">
                     <a href="pages/brecho-profile.html">
                         <img class="rounded-circle image-circle img-fluid" alt="Imagem Brechó Parceiro"
-                            src="images/rounded.png" data-holder-rendered="true">
+                        id="brechoImage5" src="images/rounded.png" data-holder-rendered="true">
                     </a>
-                    <p class="txt-brecho">Brechó do Carlos</p>
+                    <p class="txt-brecho"id="nomeBrecho5"></p>
 
                 </div>
 
                 <div class="col-lg-2 col-md-2 col-4 text-center brechos-destaque">
                     <a href="pages/brecho-profile.html">
                         <img class="rounded-circle image-circle img-fluid" alt="Imagem Brechó Parceiro"
-                            src="images/rounded.png" data-holder-rendered="true">
+                        id="brechoImage6" src="images/rounded.png" data-holder-rendered="true">
                     </a>
-                    <p class="txt-brecho">Brechó do Carlos</p>
+                    <p class="txt-brecho"id="nomeBrecho6"></p>
 
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -365,13 +365,10 @@
             .then((resposta) => {
                 resposta.json().then((dados) => {
                     var { products } = dados;
-                    console.log(products)
                     for(produtos of products){
                     
-                    console.log(produtos.price)
                     }
                     lockdados = products
-                    console.log(lockdados)
                     
 
                 
@@ -440,7 +437,12 @@
                     
                 })
             })
-
+            var nomeBrecho1 = document.getElementById('nomeBrecho1')
+            var nomeBrecho2 = document.getElementById('nomeBrecho2')
+            var nomeBrecho3 = document.getElementById('nomeBrecho3')
+            var nomeBrecho4 = document.getElementById('nomeBrecho4')
+            var nomeBrecho5 = document.getElementById('nomeBrecho5')
+            var nomeBrecho6 = document.getElementById('nomeBrecho6')
 
             fetch(`https://clo2020.herokuapp.com/listAdms`, {
                 method: "get",
@@ -449,10 +451,43 @@
             })
             .then((resposta) => {
                 resposta.json().then((dados) => {
-                   const {adm} = dados 
-                    // console.log(adm)
+                   const {adms} = dados 
 
 
+                    // nomeBrecho1.textContent = adms[0].name
+                    // nomeBrecho2.textContent = adms[1].name
+                    // nomeBrecho3.textContent = adms[2].name
+                    // nomeBrecho4.textContent = adms[3].name
+                    // nomeBrecho5.textContent = adms[4].name
+                    // nomeBrecho6.textContent = adms[5].name
+
+                    // if(adms.image){
+                    //     brechoImage2
+                    // }
+
+
+                    var brechos = ""
+
+                        for (let i = 0; i <= 5; i++) {
+                        console.log(adms[i].image  )
+                        console.log(adms[i]._id)
+                            
+                        
+                            brechos +=
+                            "<div class='col-lg-2 col-md-2 col-4 text-center brechos-destaque'>"+
+                                "<a href='pages/brecho-profile.html'>"+
+                                    "<img class='rounded-circle image-circle img-fluid' alt='Imagem Brechó Parceiro'"+
+                                        "src='"+ adms[i].image.location +"' data-holder-rendered='true'>"+
+                                "</a>"+
+                                "<p class='txt-brecho'>"+ adms[i].name +"</p>"+
+
+                            "</div>"
+
+                        
+                        
+                        }
+                        $('#brechosParceiros').html(brechos)
+                    
                 })
             })
         })

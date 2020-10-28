@@ -33,6 +33,8 @@
                             <img src="../images/logoclo.svg" class=" my-3" height="50" alt="Logo Clo">
                         </div>
                         <p class="subtitle text-center text-monospace font">Registrar como Brechó</p>
+                        <p id="error" class="loginerror"></p>
+
                         <form class="form-signin">
 
                             <div class="form-label-group">
@@ -118,7 +120,9 @@
             })
             .then((resposta) => {
                 resposta.json().then((dados) => {
-                                           
+                    if(!dados.adm){                      
+                        return error.textContent = dados
+                    }
                 console.log(dados)
                 window.location = "login-brecho.html"        
                 })
