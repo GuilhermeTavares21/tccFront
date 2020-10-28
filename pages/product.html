@@ -31,10 +31,10 @@
                 <p class="title-p" id="nome">Camiseta Florida</p>
                 <p class="item-price-p ml-2"><span class="font-cut" id="preco"></span> <span id="desconto"> </span>
                 
-                <p class="ml-2 txt-produto"><span class="txt-bold">Tamanho: </span> <span id="tamanho">G</span></p>
-                <p class="ml-2 txt-produto"><span class="txt-bold">Tempo de uso: </span> <span id="tempoUsado">Carlos Co.</span></p>
-                <p class="ml-2 txt-produto"><span class="txt-bold">Brecho: </span> <button onclick=a(id) class="brecho">Carlos Co.</button></p>
-                <p class="ml-2 txt-produto"><span class="txt-bold">Descrição: </span> <span id="descricao">Camisa preta de manga curta com flores brancas feita em algodão e poliéster. </span></p>
+                <p class="ml-2 txt-produto"><span class="txt-bold">Tamanho: </span> <span id="tamanho"></span></p>
+                <p class="ml-2 txt-produto"><span class="txt-bold">Tempo de uso: </span> <span id="tempoUsado"></span></p>
+                <p class="ml-2 txt-produto"><span class="txt-bold">Brecho: </span> <button onclick=a(id) class="brecho btnreset"></button></p>
+                <p class="ml-2 txt-produto"><span class="txt-bold">Descrição: </span> <span id="descricao"></span></p>
                 <div class="row">
                     <div class="col-6">
                         <a href="pages/product.html" class="btn-p ml-2">Adicionar ao Carrinho</a>
@@ -50,7 +50,7 @@
             var id = localStorage.getItem("produtoId")
             var nome = document.getElementById('nome')
             var preco = document.getElementById('preco')
-            var desconto = document.getElementById('desconto')
+            var descont = document.getElementById('desconto')
             var tamanho = document.getElementById('tamanho')
             var tempoUsado = document.getElementById('tempoUsado')
             var brecho = document.querySelector('.brecho')
@@ -63,15 +63,22 @@
 			})
 			.then((resposta) => {
 				resposta.json().then((dados) => {
-                    const { style, size, price, timeUsed, description, image, adm } = dados.product
-                    console.log(dados)
-                    var descont = price*0.1
-                    var valor = price
-                    valor-=descont
+                    const { style, size, price, timeUsed, description, image, adm, desconto } = dados.product
+                    console.log(desconto)
+                    
 
                     nome.textContent = style
+                    if(desconto){
+                        descont.textContent = "R$: "+ desconto
+                    }
+                    else{
+                        console.log("a")
+                        preco.classList.remove('font-cut')
+                        
+                    }
                     preco.textContent = "R$: "+ price
-                    desconto.textContent = "R$: "+ valor
+                    
+                    
                     tempoUsado.textContent = timeUsed
                     tamanho.textContent = size
                     brecho.textContent = adm.name
