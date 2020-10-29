@@ -98,3 +98,7 @@ a:hover{
 	border: none;
 	background: none;
 }
+
+.navbb{
+	border-bottom: 1px solid #ccc;
+}
