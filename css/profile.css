@@ -662,3 +662,12 @@ b.max-bold {
     color: #fff !important;
     font-size: 15px !important;
 }
+
+.btncfg{
+    position: relative;
+}
+
+.btnreset button{
+	border: none;
+	background: none;
+}
