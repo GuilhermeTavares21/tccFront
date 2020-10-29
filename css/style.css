@@ -228,11 +228,22 @@ body { overflow-x: hidden; }
 }
 
 .image-circle{
-	width: 200px;
-	height: 200px;
+	width: 150px !important;
+	height: 150px !important;
 	text-align: center;
 	transition: .2s ease-in-out;
   	filter: grayscale(0%);
+}
+
+@media (max-width: 990px) 
+{
+	.image-circle{
+		width: 100px !important;
+		height: 100px !important;
+		text-align: center;
+		transition: .2s ease-in-out;
+		  filter: grayscale(0%);
+	}
 }
 
 .image-circle:hover{

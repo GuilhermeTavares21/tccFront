@@ -71,31 +71,31 @@
                 <div class="title1">
                     <h2>Produtos <span>em</span> <b>Desconto</b></h2>
                 </div>
-                <div  class="carousel slide" data-ride="carousel" data-interval="0">
+                <div class="carousel slide" data-ride="carousel" data-interval="0">
 
                     <div class="carousel-inner">
-                      <!-- parte 1 -->
+                        <!-- parte 1 -->
                         <div class="carousel-item active">
                             <div class="row btnreset" id="produtos1">
 
 
-                               
+
                             </div>
-                        </div>                      
+                        </div>
                     </div>
                     <p class="mx-auto text-center pontinho d-lg-none">•</p>
                     <div class="row mt-2">
-                        <button  onclick="maisProdutos()" class="vermais mx-auto">Ver Mais Produtos...</button>
+                        <button onclick="maisProdutos()" class="vermais mx-auto">Ver Mais Produtos...</button>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
 
     <!-- fim do card desconto -->
 
-      
+
 
 
     <hr class="linha2">
@@ -110,23 +110,23 @@
                 <div class="title1">
                     <h2>Produtos <span>em</span> <b>Destaque</b></h2>
                 </div>
-                <div  class="carousel slide" data-ride="carousel" data-interval="0">
+                <div class="carousel slide" data-ride="carousel" data-interval="0">
 
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <div class="row btnreset" id="produtos2">
 
 
-                               
+
                             </div>
-                        </div>                      
+                        </div>
                     </div>
                     <p class="mx-auto text-center pontinho d-lg-none">•</p>
                     <div class="row mt-2">
                         <a href="#" class="vermais mx-auto">Ver Mais Produtos...</a>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -141,17 +141,17 @@
         <div class="title1">
             <h2>Brechós Parceiros</h2>
         </div>
-        <div class="" >
+        <div class="">
 
-            <div class="row" id="brechosParceiros">
-                
+            <div class="row btnreset" id="brechosParceiros">
+
             </div>
         </div>
     </div>
 
     <!-- fim brechos em destaque xl, lg, md -->
 
-    
+
 
 
     <br><br><br><br>
@@ -263,96 +263,96 @@
             return window.location = "pages/ListBrecho.html"
         })
 
-            var lockdados;
-            var produtosAtivos = 5
+        var lockdados;
+        var produtosAtivos = 5
 
-            function maisProdutos(){
-                produtosAtivos+=6
-                var maisProdutos = ""
-                var contProdutos = 0
+        function maisProdutos() {
+            produtosAtivos += 6
+            var maisProdutos = ""
+            var contProdutos = 0
 
-                for (let i = 0; i < lockdados.length; i++) {
-                    if (lockdados[i].desconto){
-                        contProdutos++
-                            maisProdutos +=
-                                "<div class='col-xl-2 col-lg-4 col-md-4 col-sm-6 col-12 card-prod'" +
-                                    "<div class='thumb-wrapper'>" +
-                                        "<button type='button' onclick='a(`" + lockdados[i]._id + "`)' >" + 
-                                            "<div class='img-box'>" +
-                                                "<img id='imagePeril' src='" + lockdados[i].image.location + "' class='img-fluid'>" +
-                                            "</div>" +
-                                            "<div class='thumb-content'>" +
-                                                "<h4>" + lockdados[i].style + "</h4>" +
-                                                "<p class='item-price'><span class='font-cut'> R$"+lockdados[i].price+"</span> R$" + lockdados[i].desconto + "</p>"+
-                                                "</p>" +
-                                                "<p class='item-name mt-1 mb-3'>Brecho: "+lockdados[i].adm.name+"</p>" +
-                                                
-                                                "<a href='#' class='btn btn-primary btn-cart'>Adicionar ao Carrinho</a>" +
-                                            "</div>" +
-                                        "</button>"+
-                                    "</div>" +
-                                "</div>" 
-                        if(contProdutos == produtosAtivos ){
-                            break;
-                        }
+            for (let i = 0; i < lockdados.length; i++) {
+                if (lockdados[i].desconto) {
+                    contProdutos++
+                    maisProdutos +=
+                        "<div class='col-xl-2 col-lg-4 col-md-4 col-sm-6 col-12 card-prod'" +
+                        "<div class='thumb-wrapper'>" +
+                        "<button type='button' onclick='a(`" + lockdados[i]._id + "`)' >" +
+                        "<div class='img-box'>" +
+                        "<img id='imagePeril' src='" + lockdados[i].image.location + "' class='img-fluid'>" +
+                        "</div>" +
+                        "<div class='thumb-content'>" +
+                        "<h4>" + lockdados[i].style + "</h4>" +
+                        "<p class='item-price'><span class='font-cut'> R$" + lockdados[i].price + "</span> R$" + lockdados[i].desconto + "</p>" +
+                        "</p>" +
+                        "<p class='item-name mt-1 mb-3'>Brecho: " + lockdados[i].adm.name + "</p>" +
+
+                        "<a href='#' class='btn btn-primary btn-cart'>Adicionar ao Carrinho</a>" +
+                        "</div>" +
+                        "</button>" +
+                        "</div>" +
+                        "</div>"
+                    if (contProdutos == produtosAtivos) {
+                        break;
                     }
                 }
-                $('#produtos1').html(maisProdutos)
             }
+            $('#produtos1').html(maisProdutos)
+        }
 
         document.addEventListener("DOMContentLoaded", function () {
-            
 
-            
+
+
 
             fetch(`https://clo2020.herokuapp.com/listproducts`, {
                 method: "get",
                 headers: { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('token') }
 
             })
-            .then((resposta) => {
-                resposta.json().then((dados) => {
-                    var { products } = dados;
-                    for(produtos of products){
-                    
-                    }
-                    lockdados = products
-                    
+                .then((resposta) => {
+                    resposta.json().then((dados) => {
+                        var { products } = dados;
+                        for (produtos of products) {
 
-                
-
-                    var contProdutos = []
-                    
-                    // Exibindo produtos
-                        var produtos = ""
-                        
-                        for (let i = 0; i < products.length; i++) {
-                        if (products[i].desconto){
-                            contProdutos.push(products[i])
-                            
-                                produtos +=
-                                        "<div class='col-xl-2 col-lg-4 col-md-4 col-sm-6 col-12 card-prod'" +
-                                            "<div class='thumb-wrapper'>" +
-                                                "<button type='button' onclick='a(`" + products[i]._id + "`)' >" + 
-                                                    "<div class='img-box'>" +
-                                                        "<img id='imagePeril' src='" + products[i].image.location + "' class='img-fluid'>" +
-                                                    "</div>" +
-                                                    "<div class='thumb-content'>" +
-                                                        "<h4>" + products[i].style + "</h4>" +
-                                                        "<p class='item-price'><span class='font-cut'> R$"+products[i].price+"</span> R$" + products[i].desconto + "</p>"+
-                                                        "</p>" +
-                                                        "<p class='item-name mt-1 mb-3'>Brecho: "+products[i].adm.name+"</p>" +
-                                                        
-                                                        "<a href='#' class='btn btn-primary btn-cart'>Adicionar ao Carrinho</a>" +
-                                                    "</div>" +
-                                                "</button>"+
-                                            "</div>" +
-                                        "</div>" 
-                                
-                            if(contProdutos.length == 6 ){
-                                break;
-                            }
                         }
+                        lockdados = products
+
+
+
+
+                        var contProdutos = []
+
+                        // Exibindo produtos
+                        var produtos = ""
+
+                        for (let i = 0; i < products.length; i++) {
+                            if (products[i].desconto) {
+                                contProdutos.push(products[i])
+
+                                produtos +=
+                                    "<div class='col-xl-2 col-lg-4 col-md-4 col-sm-6 col-12 card-prod'" +
+                                    "<div class='thumb-wrapper'>" +
+                                    "<button type='button' onclick='a(`" + products[i]._id + "`)' >" +
+                                    "<div class='img-box'>" +
+                                    "<img id='imagePeril' src='" + products[i].image.location + "' class='img-fluid'>" +
+                                    "</div>" +
+                                    "<div class='thumb-content'>" +
+                                    "<h4>" + products[i].style + "</h4>" +
+                                    "<p class='item-price'><span class='font-cut'> R$" + products[i].price + "</span> R$" + products[i].desconto + "</p>" +
+                                    "</p>" +
+                                    "<p class='item-name mt-1 mb-3'>Brecho: " + products[i].adm.name + "</p>" +
+
+                                    "<a href='#' class='btn btn-primary btn-cart'>Adicionar ao Carrinho</a>" +
+                                    "</div>" +
+                                    "</button>" +
+                                    "</div>" +
+                                    "</div>"
+
+                                if (contProdutos.length == 6) {
+                                    break;
+                                }
+                            }
                         }
 
                         $('#produtos1').html(produtos)
@@ -360,80 +360,82 @@
                         var produtos2 = ""
 
                         for (let i = 0; i <= 5; i++) {
-                        if (!products[i].desconto){
+                            if (!products[i].desconto) {
                                 produtos2 +=
-                                        "<div class='col-xl-2 col-lg-4 col-md-4 col-sm-6 col-12 card-prod'" +
-                                            "<div class='thumb-wrapper'>" +
-                                                "<button type='button' onclick='a(`" + products[i]._id + "`)' >" + 
-                                                    "<div class='img-box'>" +
-                                                        "<img id='imagePeril' src='" + products[i].image.location + "' class='img-fluid'>" +
-                                                    "</div>" +
-                                                    "<div class='thumb-content'>" +
-                                                        "<h4>" + products[i].style + "</h4>" +
-                                                        "<p class='item-price'> R$"+products[i].price+"</span></p>"+
-                                                        "</p>" +
-                                                        "<p class='item-name mt-1 mb-3'>Brecho: "+products[i].adm.name+"</p>" +
-                                                        
-                                                        "<a href='#' class='btn btn-primary btn-cart'>Adicionar ao Carrinho</a>" +
-                                                    "</div>" +
-                                                "</button>"+
-                                            "</div>" +
-                                        "</div>" 
-                        }
+                                    "<div class='col-xl-2 col-lg-4 col-md-4 col-sm-6 col-12 card-prod'" +
+                                    "<div class='thumb-wrapper'>" +
+                                    "<button type='button' onclick='a(`" + products[i]._id + "`)' >" +
+                                    "<div class='img-box'>" +
+                                    "<img id='imagePeril' src='" + products[i].image.location + "' class='img-fluid'>" +
+                                    "</div>" +
+                                    "<div class='thumb-content'>" +
+                                    "<h4>" + products[i].style + "</h4>" +
+                                    "<p class='item-price'> R$" + products[i].price + "</span></p>" +
+                                    "</p>" +
+                                    "<p class='item-name mt-1 mb-3'>Brecho: " + products[i].adm.name + "</p>" +
+
+                                    "<a href='#' class='btn btn-primary btn-cart'>Adicionar ao Carrinho</a>" +
+                                    "</div>" +
+                                    "</button>" +
+                                    "</div>" +
+                                    "</div>"
+                            }
                         }
                         $('#produtos2').html(produtos2)
-                    
+
+                    })
                 })
-            })
             var btnProduto = document.querySelector('.btnProdutos')
-        
-            function a(id) {
-                console.log(id)
-                window.location = "pages/product.html"
-            
-                localStorage.setItem("produtoId", id)
-            }
+
+
 
             fetch(`https://clo2020.herokuapp.com/listAdms`, {
                 method: "get",
                 headers: { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('token') }
 
             })
-            .then((resposta) => {
-                resposta.json().then((dados) => {
-                   const {adms} = dados 
-                    var brechos = ""
+                .then((resposta) => {
+                    resposta.json().then((dados) => {
+                        const { adms } = dados
+                        var brechos = ""
 
                         for (let i = 0; i <= 5; i++) {
-                        // console.log(adms[i].image  )
-                        // console.log(adms[i]._id)
-                            
-                        
-                            brechos +=
-                            "<div class='col-lg-2 col-md-2 col-4 text-center brechos-destaque'>"+
-                                "<button class='btnreset' onclick='buscarBrecho(`" + adms[i]._id + "`)'>"+
-                                    "<img class='rounded-circle image-circle img-fluid' alt='Imagem Brechó Parceiro'"+
-                                        "src='"+ adms[i].image.location +"' data-holder-rendered='true'>"+
-                               
-                                "<p class='txt-brecho'>"+ adms[i].name +"</p>"+
-                                "</button>"+
-                            "</div>"
+                            // console.log(adms[i].image  )
+                            // console.log(adms[i]._id)
 
-                        
-                        
+
+                            brechos +=
+                                "<div class='col-lg-2 col-md-2 col-4 text-center brechos-destaque'>" +
+                                "<button class='btnreset' onclick='buscarBrecho(`" + adms[i]._id + "`)'>" +
+                                "<img class='rounded-circle image-circle img-fluid' alt='Imagem Brechó Parceiro'" +
+                                "src='" + adms[i].image.location + "' data-holder-rendered='true'>" +
+
+                                "<p class='txt-brecho'>" + adms[i].name + "</p>" +
+                                "</button>" +
+                                "</div>"
+
+
+
                         }
                         $('#brechosParceiros').html(brechos)
-                    
+
+                    })
                 })
-            })
         })
+        function a(id) {
+            console.log(id)
+            window.location = "pages/product.html"
+
+            localStorage.setItem("produtoId", id)
+        }
+
         function buscarBrecho(id) {
             console.log(id)
             window.location = "pages/pagBrecho.html"
-          
+
             localStorage.setItem("brechoId", id)
         }
-       
+
     </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
