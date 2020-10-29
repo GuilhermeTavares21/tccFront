@@ -475,36 +475,7 @@
 		})
 
 
-		avaliar.addEventListener('click', function() {
-            
-			var ValorAvaliacao = document.getElementById('ValorAvaliacao')
-			var ComentarioAvaliacao = document.getElementById('ComentarioAvaliacao')
-			console.log(ValorAvaliacao.value)
-			console.log(ComentarioAvaliacao.value)
-			fetch(`https://clo2020.herokuapp.com/evaluationAdm/5f9765efce42960017293133`, {
-				method: "POST",
-				headers: { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('token') },
-				body: JSON.stringify({                    
-					avaliate: ValorAvaliacao.value,
-					comment: ComentarioAvaliacao.value
-
-                })             
-			})
-				.then((resposta) => {
-					resposta.json().then((dados) => {						
-						var { evaluation } = dados;
-
-						console.log(dados)
-						
-						for(avaliations of evaluation){
-
-							console.log(avaliations)
-
-						}
-						window.location.reload()
-					})
-				})
-			})
+		
 	</script>
 </body>
 

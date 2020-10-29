@@ -120,10 +120,10 @@
             })
             .then((resposta) => {
                 resposta.json().then((dados) => {
-                    if(!dados.adm){                      
+                    if(!dados.products){                      
                         return error.textContent = dados
                     }
-                console.log(dados)
+                // console.log(dados.products)
                 window.location = "login-brecho.html"        
                 })
             })

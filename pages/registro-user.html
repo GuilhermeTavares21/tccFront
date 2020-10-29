@@ -114,7 +114,7 @@
             })
             .then((resposta) => {
                 resposta.json().then((dados) => {
-                        if(!dados.user){                      
+                        if(!dados.sacola){                      
                             return error.textContent = dados
                         }
                         window.location = " login-user.html "

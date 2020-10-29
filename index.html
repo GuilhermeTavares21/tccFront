@@ -46,8 +46,8 @@
                     </form>
                     <a href="pages/sacola.html" class="hvr-underline-from-center nav-item nav-link icones-navbar"><span
                             class="d-md-none">Sacola</span> <i class="fas fa-shopping-bag"></i></a>
-                    <a href="pages/login.html" class="hvr-underline-from-center nav-item nav-link icones-navbar"><span
-                            class="d-md-none">Perfil</span> <i class="fas fa-user-circle"></i></a>
+                    <a href="pages/login.html" id="perfilIcon" class="hvr-underline-from-center nav-item nav-link icones-navbar"><span
+                            class="d-md-none">Perfil</span> <img id="imgPerfil" src="" alt=""> <i id="icone" class="fas fa-user-circle"></i></a>
                 </div>
             </div>
         </nav>
@@ -235,17 +235,7 @@
 
 
     <script>
-        function Addsacola(produto) {
-            var sacola = []
-            var local = JSON.parse(localStorage.getItem('sacola'))
-            if (local) {
-                sacola = local
-                console.log(sacola)
-            }
-            sacola.push(produto);
-            localStorage.setItem('sacola', JSON.stringify(sacola));
-        }
-
+        
 
 
         var form = document.querySelector('form')
@@ -286,10 +276,10 @@
                         "<p class='item-price'><span class='font-cut'> R$" + lockdados[i].price + "</span> R$" + lockdados[i].desconto + "</p>" +
                         "</p>" +
                         "<p class='item-name mt-1 mb-3'>Brecho: " + lockdados[i].adm.name + "</p>" +
-
-                        "<a href='#' class='btn btn-primary btn-cart'>Adicionar ao Carrinho</a>" +
-                        "</div>" +
                         "</button>" +
+
+                        "<button type='button' onclick='addBag(`" + products[i]._id + "`)' class='btn btn-primary btn-cart'>Adicionar ao Carrinho</button>" +
+                        "</div>" +
                         "</div>" +
                         "</div>"
                     if (contProdutos == produtosAtivos) {
@@ -343,9 +333,9 @@
                                     "</p>" +
                                     "<p class='item-name mt-1 mb-3'>Brecho: " + products[i].adm.name + "</p>" +
 
-                                    "<a href='#' class='btn btn-primary btn-cart'>Adicionar ao Carrinho</a>" +
-                                    "</div>" +
                                     "</button>" +
+                                    "<button type='button' onclick='addBag(`" + products[i]._id + "`)' class='btn btn-primary btn-cart'>Adicionar ao Carrinho</button>" +
+                                    "</div>" +
                                     "</div>" +
                                     "</div>"
 
@@ -373,10 +363,10 @@
                                     "<p class='item-price'> R$" + products[i].price + "</span></p>" +
                                     "</p>" +
                                     "<p class='item-name mt-1 mb-3'>Brecho: " + products[i].adm.name + "</p>" +
-
-                                    "<a href='#' class='btn btn-primary btn-cart'>Adicionar ao Carrinho</a>" +
-                                    "</div>" +
                                     "</button>" +
+
+                                    "<button type='button'  onclick='addBag(`" + products[i]._id + "`)' class='btn btn-primary btn-cart'>Adicionar ao Carrinho</button>" +
+                                    "</div>" +
                                     "</div>" +
                                     "</div>"
                             }
@@ -413,17 +403,74 @@
                                 "<p class='txt-brecho'>" + adms[i].name + "</p>" +
                                 "</button>" +
                                 "</div>"
-
-
-
                         }
                         $('#brechosParceiros').html(brechos)
 
                     })
                 })
+            var perfilIcon = document.getElementById('perfilIcon')
+            var icone = document.getElementById('icone')
+            fetch(`https://clo2020.herokuapp.com/loadUser`, {
+            method: "GET",
+            headers: { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('token') }
+            })
+            .then((resposta) => {
+                resposta.json().then((dados) => {
+                    console.log(dados)
+                    if(dados.sacola){
+                        // console.log("s")
+                        perfilIcon.href = "pages/user-profile.html"
+                        if(!dados.image){
+                            imgPerfil.src = "images/user-example.png"
+                        }
+                        else{
+                            imgPerfil.src = dados.image.location
+                        }
+                            
+                        icone.style.visibility = "hidden"
+                        
+                    }
+               
+                })
+            })
+            fetch(`https://clo2020.herokuapp.com/loadAdm`, {
+            method: "GET",
+            headers: { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('token') }
+            })
+            .then((resposta) => {
+                resposta.json().then((dados) => {
+                    console.log(dados)
+                    if(dados.products){
+                        console.log("s")
+                        perfilIcon.href = "pages/brecho-profile.html"
+                        imgPerfil.src = dados.image.location
+                        icone.style.visibility = "hidden"
+                    }
+               
+                })
+            })
         })
+
+
+        function addBag(idSacola){
+            console.log(idSacola)
+            localStorage.setItem('sacolaId', idSacola)
+            // window.location = "pages/sacola.html"
+            fetch(`https://clo2020.herokuapp.com/addBag`, {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('token') },
+                body: JSON.stringify({
+                   id: idSacola
+                })
+            })
+            .then((resposta) => {
+                resposta.json().then((dados) => {
+                  
+                    console.log(dados)
+                })
+            })
+        }
         function a(id) {
-            console.log(id)
             window.location = "pages/product.html"
 
             localStorage.setItem("produtoId", id)
