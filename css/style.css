@@ -441,3 +441,8 @@ body { overflow-x: hidden; }
 	 margin: 0px 0px;
 	 font-size: 1.5em;
 }
+
+.imgprofile{
+	width: 50px !important;
+	height: 50px !important;
+}
