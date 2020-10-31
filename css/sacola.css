@@ -1,33 +1,17 @@
-#emptybag{
-    text-align: center;
-    margin-top: 10%;
-}
-#emptybag img{
-    width: 10%;
-}
-#emptybag a{
-    background-color: black;
-    transition: 0.5s;
-}
-#emptybag a:hover{
-    background-color: white;
-    color: black;
-}
 
 .iconsacola{
     font-size: 2em;
 }
 
 .ccenter{
- 
   display: block;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 .borderx{
-    border: 1px solid black;
+    padding-bottom: 10px !important;
+    border-bottom: 1px solid black;
 }
 
 .mtcontainer{
