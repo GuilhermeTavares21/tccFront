@@ -17,3 +17,19 @@
 .iconsacola{
     font-size: 2em;
 }
+
+.ccenter{
+ 
+  display: block;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.borderx{
+    border: 1px solid black;
+}
+
+.mtcontainer{
+    margin-top: 20px;
+}
