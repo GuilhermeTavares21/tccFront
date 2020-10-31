@@ -44,6 +44,8 @@
 				<div class="row px-5">
 					<a class="btn02 btncfg" href="../index.html"><i class="fas fa-arrow-left"></i></a>
 					<a class="btn01 ml-auto mt-3" href="../pages/edit-brecho.html" id="alterarDados"><i class="fas fa-cog"></i></a>
+					<button type="button" id="Logoff">Sair</button>
+
 				</div>
 			</div>
 			<div class="container">
@@ -267,9 +269,9 @@
 		</div>
 	</div>
 
-	<div class="col-12 mb-5 text-center">
+	<!-- <div class="col-12 mb-5 text-center">
 		<a href="#" class="seemore">Ver Mais...</a>
-	</div>
+	</div> -->
 	<!-- fim dos produtos  -->
 
 	<!-- avaliacao -->
@@ -405,17 +407,12 @@
 			})
 			.then((resposta) => {
 				resposta.json().then((dados) => {
-					if(!dados){
-						addProduto.style.visibility = 'hidden'
-						alterarDados.style.visibility = 'hidden'
-					}
-					// if (dados.message) {
-					// 	return window.location = '404.html'
-					// }
+					
+					
 					console.log(dados._id)
 					var { name, phone, email, password, street, numberHouse, complement, image, description, mediaEvaluation, evaluation, products } = dados;
 					// console.log(evaluation)
-					nome.textContent = name
+					nome.textContent = name.toUpperCase()
 					telephone.textContent = phone
 					txtEmail.textContent = email
 					rua.textContent = street
@@ -447,6 +444,7 @@
 					var produtos = ""
 
 					for (let i = 0; i < products.length; i++) {
+						if(products[i].desconto){
 						produtos += 
 							"<div class='col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-6'>"+
 								"<div class='thumb-wrapper'>"+
@@ -455,14 +453,29 @@
 									"</div>"+
 									"<div class='thumb-content'>"+
 										"<h4>"+products[i].style+"</h4>"+
-										"<p class='item-price'>R$"+products[i].price+""+
-										"</p>"+
-										"<p class='item-name mt-1 mb-3'>"+name+"</p>"+
+										"<p class='item-price'><span class='font-cut'> R$" + products[i].price + "</span> R$" + products[i].desconto + "</p>" +
+										"<p class='item-name mt-1 mb-3'>"+name+"</p>"+										
 										
-										"<a href='#' class='btn btn-primary'>Adicionar ao Carrinho</a>"+
 									"</div>"+
 								"</div>"+
 							"</div>"
+						}
+						else{
+							produtos += 
+							"<div class='col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-6'>"+
+								"<div class='thumb-wrapper'>"+
+									"<div class='img-box'>"+
+										"<img id='imagePeril' src='"+products[i].image.location+"' class='img-fluid'>"+
+									"</div>"+
+									"<div class='thumb-content'>"+
+										"<h4>"+products[i].style+"</h4>"+
+										"<p class='item-price'>R$"+products[i].price+"</p>" +
+										"<p class='item-name mt-1 mb-3'>"+name+"</p>"+										
+										
+									"</div>"+
+								"</div>"+
+							"</div>"
+						}
 					}
 					$('#produtos').html(produtos)
 
@@ -474,8 +487,33 @@
 			window.location = "add-product.html"
 		})
 
+		var Logoff = document.getElementById("Logoff")
+		Logoff.addEventListener("click", function(){
+			window.localStorage.removeItem('token');
+			window.location = "../index.html"
+		})
 
-		
+
+		function addBag(idSacola){
+            console.log(idSacola)
+            localStorage.setItem('sacolaId', idSacola)
+            // window.location = "pages/sacola.html"
+            fetch(`https://clo2020.herokuapp.com/addBag`, {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('token') },
+                body: JSON.stringify({
+                   id: idSacola
+                })
+            })
+            .then((resposta) => {
+                resposta.json().then((dados) => {
+                  
+                    console.log(dados)
+                })
+            })
+        }
+
+
 	</script>
 </body>
 

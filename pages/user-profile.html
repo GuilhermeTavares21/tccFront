@@ -38,6 +38,7 @@
 			<div class="row px-5">
 				<a class="btn02 mt-3" href="../index.html"><i class="fas fa-arrow-left"></i></a>
 				<a class="btn01 ml-auto mt-3" href="../pages/edit-profile.html"><i class="fas  fa-cog"></i></a>
+				<button type="button" id="Logoff">Sair</button>
 			</div>
 		</div>
 		<div class="container">
@@ -164,6 +165,7 @@
 			var numero = document.getElementById("numero")
 			var endereco = document.getElementById("endereco")
 			var imageUser = document.getElementById("imageUser")
+			var Logoff = document.getElementById("Logoff")
 			// var usuario = document.querySelector('.usuario')
 			// var nome = document.querySelector(".nome")
 			// console.log(password.value)
@@ -198,6 +200,10 @@
 
 					})
 				})
+			})
+			Logoff.addEventListener("click", function(){
+				window.localStorage.removeItem('token');
+				window.location = "../index.html"
 			})
 		</script>
 

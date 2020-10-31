@@ -47,7 +47,7 @@
                     <a href="pages/sacola.html" class="hvr-underline-from-center nav-item nav-link icones-navbar"><span
                             class="d-md-none">Sacola</span> <i class="fas fa-shopping-bag"></i></a>
                     <a href="pages/login.html" id="perfilIcon" class="hvr-underline-from-center nav-item nav-link icones-navbar "><span
-                            class="d-md-none">Perfil</span> <img id="imgPerfil" class="rounded-circle imgprofile" src="" alt=""> <i id="icone" class="fas fa-user-circle"></i></a>
+                            class="d-md-none">Perfil</span> <img id="imgPerfil" class="rounded-circle imgprofile" src="images/Profile-ICon.png" alt=""> </a>
                 </div>
             </div>
         </nav>
@@ -190,7 +190,7 @@
                             <a href="pages/login.html">Perfil</a>
                         </li>
                         <li>
-                            <a href="pages/cart.html">Sacola</a>
+                            <a href="pages/sacola.html">Sacola</a>
                         </li>
                     </ul>
 
@@ -242,7 +242,7 @@
         form.addEventListener('submit', function (e) {
             e.preventDefault()
 
-            var buscar = document.getElementById('buscar').value
+            var buscar = document.getElementById('buscar').value.toLowerCase()
 
             var a = buscar;
             console.log(a)
@@ -278,7 +278,7 @@
                         "<p class='item-name mt-1 mb-3'>Brecho: " + lockdados[i].adm.name + "</p>" +
                         "</button>" +
 
-                        "<button type='button' onclick='addBag(`" + products[i]._id + "`)' class='btn btn-primary btn-cart'>Adicionar ao Carrinho</button>" +
+                        "<button type='button' onclick='addBag(`" + lockdados[i]._id + "`)' class='btn btn-primary btn-cart'>Adicionar ao Carrinho</button>" +
                         "</div>" +
                         "</div>" +
                         "</div>"

@@ -74,25 +74,48 @@
                     const { sacola } = dados
                     var produtos = "";
                     for (let i = 0; i < sacola.length; i++) { 
-                    console.log(sacola[i])
-                        produtos +=  
-                        "<div class='mx-auto borderx col-6'>"+
-                            "<div class='row mt-4'>"+
-                                "<div class='col-12 col-md-2'>"+
-                                    "<img src='"+sacola[i].image.location+"' class='img-fluid mt-3'>"+
+                        if(sacola[i].desconto){
+                            console.log(sacola[i].desconto)
+                            produtos +=  
+                            "<div class='mx-auto borderx col-6'>"+
+                                "<div class='row mt-4'>"+
+                                    "<div class='col-12 col-md-2'>"+
+                                        "<img src='"+sacola[i].image.location+"' class='img-fluid mt-3'>"+
+                                    "</div>"+
+                                    "<div class='mt-3'>"+
+                                        "<p class='mt-3'>"+sacola[i].style+"<p>"+ 
+                                        "<div class='row ml-1'>"+
+                                            "<p class='mr-2'>R$"+sacola[i].desconto+"</p>"+
+                                            "<p clas=''>Tamanho: M</p>"+
+                                            "<div class=''>"+
+                                                "<button type='button' class='mr-auto btn btn-outline-danger px-md-3 ml-5' onclick='delet(`"+sacola[i]._id+"`)'><i class='fas fa-trash-alt'></i></button>"+
+                                            "</div>"+
+                                        "</div>"+                                    
+                                    "</div>"+
                                 "</div>"+
-                                "<div class='mt-3'>"+
-                                    "<p class='mt-3'>"+sacola[i].style+"<p>"+ 
-                                    "<div class='row ml-1'>"+
-                                        "<p class='mr-2'>R$"+sacola[i].price+"</p>"+
-                                        "<p clas=''>Tamanho: M</p>"+
-                                        "<div class=''>"+
-                                            "<button type='button' class='mr-auto btn btn-outline-danger px-md-3 ml-5' onclick='delet(`"+sacola[i]._id+"`)'><i class='fas fa-trash-alt'></i></button>"+
-                                        "</div>"+
-                                    "</div>"+                                    
+                            "</div>"
+                        }  
+                        else{
+                            console.log(sacola[i].desconto)
+                            produtos +=  
+                            "<div class='mx-auto borderx col-6'>"+
+                                "<div class='row mt-4'>"+
+                                    "<div class='col-12 col-md-2'>"+
+                                        "<img src='"+sacola[i].image.location+"' class='img-fluid mt-3'>"+
+                                    "</div>"+
+                                    "<div class='mt-3'>"+
+                                        "<p class='mt-3'>"+sacola[i].style+"<p>"+ 
+                                        "<div class='row ml-1'>"+
+                                            "<p class='mr-2'>R$"+sacola[i].price+"</p>"+
+                                            "<p clas=''>Tamanho: M</p>"+
+                                            "<div class=''>"+
+                                                "<button type='button' class='mr-auto btn btn-outline-danger px-md-3 ml-5' onclick='delet(`"+sacola[i]._id+"`)'><i class='fas fa-trash-alt'></i></button>"+
+                                            "</div>"+
+                                        "</div>"+                                    
+                                    "</div>"+
                                 "</div>"+
-                            "</div>"+
-                        "</div>"
+                            "</div>"
+                        }  
                     }
                     $('.container').html(produtos)
                     if(produtos == ""){
