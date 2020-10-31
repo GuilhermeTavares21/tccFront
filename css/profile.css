@@ -567,6 +567,20 @@ b.max-bold {
     transition: 0.3s;
 }
 
+.btn04{
+    font-size: 28px;
+    text-decoration: none !important;
+    color: rgb(255, 0, 0) !important;
+    transition: 0.3s;
+}
+
+.btn04:hover{
+    font-size: 28px;
+    text-decoration: none !important;
+    color: rgb(107, 1, 1) !important;
+    transition: 0.3s;
+}
+
  .btn01:hover {
     text-decoration: none;
     color: #fff !important;
