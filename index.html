@@ -303,6 +303,7 @@
                 .then((resposta) => {
                     resposta.json().then((dados) => {
                         var { products } = dados;
+                        console.log(products)
                         for (produtos of products) {
 
                         }
@@ -318,7 +319,7 @@
 
                         for (let i = 0; i < products.length; i++) {
                             if (products[i].desconto) {
-                                contProdutos.push(products[i])
+                                console.log(products[i])
 
                                 produtos +=
                                     "<div class='col-xl-2 col-lg-4 col-md-4 col-sm-6 col-12 card-prod'" +
@@ -347,12 +348,12 @@
 
                         $('#produtos1').html(produtos)
 
-                        var produtos2 = ""
+                        var produtos4 = ""
 
-                        for (let i = 0; i <= 5; i++) {
+                        for (let i = 0; i <= 8; i++) {
                             if (!products[i].desconto) {
-                                produtos2 +=
-                                    "<div class='col-xl-2 col-lg-4 col-md-4 col-sm-6 col-12 card-prod'" +
+                                produtos4 +=
+                                    "<div class='col-xl-2 col-lg-4 col-md-4 col-sm-6 col-12 card-prod'>" +
                                     "<div class='thumb-wrapper'>" +
                                     "<button type='button' onclick='a(`" + products[i]._id + "`)' >" +
                                     "<div class='img-box'>" +
@@ -369,9 +370,10 @@
                                     "</div>" +
                                     "</div>" +
                                     "</div>"
+                            console.log(products[i])
                             }
                         }
-                        $('#produtos2').html(produtos2)
+                        $('#produtos2').html(produtos4)
 
                     })
                 })
@@ -416,7 +418,7 @@
             })
             .then((resposta) => {
                 resposta.json().then((dados) => {
-                    console.log(dados)
+                    // console.log(dados)
                     if(dados.sacola){
                         // console.log("s")
                         perfilIcon.href = "pages/user-profile.html"
@@ -427,7 +429,7 @@
                             imgPerfil.src = dados.image.location
                         }
                             
-                        icone.style.visibility = "hidden"
+                        // icone.style.visibility = "hidden"
                         
                     }
                
@@ -439,7 +441,7 @@
             })
             .then((resposta) => {
                 resposta.json().then((dados) => {
-                    console.log(dados)
+                    // console.log(dados)
                     if(dados.products){
                         console.log("s")
                         perfilIcon.href = "pages/brecho-profile.html"
